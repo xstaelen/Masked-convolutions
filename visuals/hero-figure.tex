@@ -1,0 +1,70 @@
+\begin{figure}[tb]
+    \newcommand{\subfigwidth}{0.485\linewidth} % Define a variable for the width
+
+    \centering
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/Forgery_DPP8_TIFF0382_90_1536x1024_s_0__input_annotated.png}
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__input_annotated.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/JPG-TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__input_annotated.jpg}
+        \caption{Forged image with a distraction}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_0__gt_mask.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__gt_mask.png}
+        \caption{Ground-truth mask}
+    \end{subfigure}
+
+    \vspace{0.3em} % Add vertical spacing between rows
+
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_0__pred_RdBu_r.png}
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/JPG-TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_RdBu_r.jpg}
+        \caption{TruFor prediction without distractions}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_0__pred_distracted_RdBu_r.png}
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_distracted_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/JPG-TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_distracted_RdBu_r.jpg}
+        \caption{TruFor prediction with one distraction added (a logo)}
+    \end{subfigure}
+    
+    \vspace{0.3em} % Add vertical spacing between rows
+
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_0__pred_cover_generated_RdBu_r.png}
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_cover_generated_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/JPG-TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_cover_generated_RdBu_r.jpg}
+        \caption{Modified TruFor prediction (ours), manually masked, with one distraction added}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_0__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.png}
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/JPG-TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg}
+        \caption{Modified TruFor prediction (ours), automatically masked, with one distraction added}
+    \end{subfigure}
+    % \begin{subfigure}[t]{\subfigwidth}
+    %     \centering
+    %     % \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_0__pred_iterative_dilation_1.0_merged_round_1_RdBu_r.png}
+    %     \includegraphics[width=\linewidth]{chapters_WACV/figures/impact_example/TruFor/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_iterative_dilation_1.0_merged_round_1_RdBu_r.png}
+    %     \caption{Modified TruFor prediction (ours) automatically masked with one distraction added}
+    % \end{subfigure}
+    
+    \caption{
+    Before adding the logo as a forensic distraction (in blue), TruFor~\cite{TruFor} detects the forgery (in orange) with high accuracy (c). However, after adding the distraction and applying lossy JPEG compression, TruFor fails to detect the forgery (d), as the distraction causes it to lose focus. 
+    In contrast, TruFor adapted with our proposed masked-convolution approach is able to ignore the distraction and regain focus on the forgery, both using manual masking (e) and automatic masking (f). 
+    In (e), the white box indicates the masked region. 
+    Note: the same compression was applied to the non-distracted image (c) before making the TruFor prediction.
+    \vspace{-1em}
+    }
+    \label{figure:distraction-example}
+\end{figure}

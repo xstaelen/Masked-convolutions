@@ -1,0 +1,169 @@
+
+\begin{table*}[tb]
+    \centering
+    \footnotesize
+    \setlength{\tabcolsep}{5pt}
+    
+    % \newcommand{\light}[1]{\textcolor{gray}{#1}}
+    \newcommand{\light}[1]{#1}
+    \newcommand{\tr}[1]{%
+        \pgfmathparse{#1}%
+        \pgfmathprintnumberto[fixed, zerofill, precision=3, assume math mode=true]{\pgfmathresult}{\formatted}%
+        \StrSubstitute[1]{\formatted}{0.}{.}[\formatted]%
+        \formatted%
+    }
+    \newcommand{\trz}[1]{%
+        \pgfmathparse{#1}%
+        \pgfmathprintnumberto[fixed, zerofill, precision=3, assume math mode=true,, ]{\pgfmathresult}{\formatted}%
+        \formatted%
+    }
+    \newcommand{\fn}{\hspace{-0.35em}\rlap{\textsuperscript{1}}}
+    \newcommand{\fnn}{\rlap{\textsuperscript{1}}}
+    
+
+    \caption{
+    Performance of IFL models before (orig) and after (distr) adding forensic distractions, as well as their difference (diff), measured in F1* score~\eqref{eq:F1*-score}. 
+    The best performance on distracted images for each dataset is highlighted in \textbf{bold}, and the second-best is \underline{underlined}.
+    Most notably, TruFor shows a significant decrease in performance, addressed by the proposed Mod. TruFor.
+    %and evaluated on four datasets.
+    %The \pos{1}{bold} and \pos{2}{underlined} values indicate the best and second best performance, respectively. 
+    % Decreases of less than 1\% are shown in \light{gray}. 
+    % \textit{Modified TruFor} is TruFor adapted with the proposed masked convolutional approach.
+    }
+    \label{table:motivation:results}
+    
+    % \small
+
+    \begin{tabular}{rllllllllll}
+    
+    \toprule
+    % \textbf{Model}  
+    \textbf{Model}      
+    & \multicolumn{2}{c}{\textbf{DSO-1}}%~\cite{DSO-1}} 
+    & \multicolumn{2}{c}{\textbf{VIPP}}%~\cite{VIPP}} 
+    & \multicolumn{2}{c}{\textbf{OpenForensics}}%~\cite{OpenForensics}} 
+    & \multicolumn{2}{c}{\textbf{IMD2020 \fnn}}%~\cite{IMD2020}} 
+    & \multicolumn{2}{c}{\textbf{Average}} \\ 
+
+    & orig & distr (\& diff)
+     & orig & distr (\& diff)
+     & orig & distr  (\& diff)
+     & orig & distr (\& diff)
+     & orig & distr (\& diff) \\
+
+    \cmidrule(lr){1-1}
+    \cmidrule(lr){2-3}
+    \cmidrule(lr){4-5}
+    \cmidrule(lr){6-7}
+    \cmidrule(lr){8-9}
+    \cmidrule(lr){10-11}
+
+    DCT~\cite{DCT}           
+    &            \tr{0.184979} &            \tr{0.183477} (-0.81\%) & %(\trz{-0.001502}) &
+                 \tr{0.150379} &            \tr{0.138750} (-7.73\%) & %(\trz{-0.011628}) & 
+                 \tr{0.120334} &            \tr{0.115110} (-4.34\%) & %(\trz{-0.005224}) &
+                 \tr{0.130909} &            \tr{0.123783} (-5.44\%) & %(\trz{-0.007126}) & 
+                 \tr{0.146650} &            \tr{0.140280} (-4.34\%)  \\
+
+    ADQ1~\cite{ADQ1}         
+    &            \tr{0.213765} &            \tr{0.215128} (\phantom{-}0.64\%) & %(\phantom{-}\trz{ 0.001363}) & 
+                 \tr{0.175505} &            \tr{0.177119} (\phantom{-}0.92\%) & %(\phantom{-}\trz{ 0.001614}) & 
+                 \tr{0.113143} &            \tr{0.111699} (-1.28\%) & %(\trz{-0.001444}) & 
+                 \tr{0.133042} &            \tr{0.133595} (\phantom{-}0.42\%) & %(\phantom{-}\trz{ 0.000553})  & 
+                 \tr{0.158864} &            \tr{0.159385} (\phantom{-}0.33\%)  \\ 
+
+    BLK~\cite{BLK}           
+    &            \tr{0.181294} &            \tr{0.177633} (-2.02\%) & %(\trz{-0.003661}) & 
+                 \tr{0.136500} &            \tr{0.129566} (-5.08\%) & %(\trz{-0.006935})  & 
+                 \tr{0.079812} &            \tr{0.076469} (-4.19\%) & %(\trz{-0.003344}) &  
+                 \tr{0.115020} &            \tr{0.112068} (-2.57\%) & %(\trz{-0.002952})  & 
+                 \tr{0.128157} &            \tr{0.123934} (-3.29\%)  \\ 
+
+    CAGI~\cite{CAGI}         
+    &            \tr{0.223779} &            \tr{0.227507} (\phantom{-}1.67\%) & %(\phantom{-}\trz{0.003728})  & 
+                 \tr{0.157923} &            \tr{0.165756} (\phantom{-}4.96\%) & %(\phantom{-}\trz{0.007833}) & 
+                 \tr{0.064615} &            \tr{0.067676} (\phantom{-}4.74\%) & %(\phantom{-}\trz{0.003061}) &  
+                 \tr{0.111475} &            \tr{0.120284} (\phantom{-}7.90\%) & %(\phantom{-}\trz{0.008809})  & 
+                 \tr{0.139448} &            \tr{0.145306} (\phantom{-}4.20\%)  \\ 
+
+
+    %\cdashline{1-11}[1pt/4pt]
+
+    PSCC-Net~\cite{PSCC-Net} 
+    &            \tr{0.061061} &            \tr{0.050734} (-16.91\%) & %(\trz{-0.010327})  &   
+                 \tr{0.134614} &            \tr{0.119602} (-11.15\%) & %(\trz{-0.015012})  &
+                 \tr{0.078415} &            \tr{0.057853} (-26.22\%) & %(\trz{-0.020562})  &  
+                 \tr{0.098113} &            \tr{0.082088} (-16.33\%) & %(\trz{-0.016026})  &
+                 \tr{0.093051} &            \tr{0.077569} (-16.64\%) \\ 
+
+    CAT-Net~\cite{CAT-Net}   
+    &            \tr{0.073069} &            \tr{0.064723} (-11.42\%) & %(\trz{-0.008346})  &    
+                 \tr{0.135826} &            \tr{0.092820} (-31.66\%) & %(\trz{-0.043006})  & 
+                 \tr{0.280994} &            \tr{0.229860} (-18.20\%) & %(\trz{-0.051134})  &   
+                 \tr{0.408855} &            \tr{0.376003} (-8.04\%) & %(\trz{-0.032852})  &
+                 \tr{0.224686} &            \tr{0.190852} (-15.06\%) \\ 
+    
+
+    TruFor~\cite{TruFor}     
+    &            \tr{0.421588} &            \tr{0.225435} (-46.53\%) & %(\trz{-0.196153})  &    
+                 \tr{0.320793} &            \tr{0.102768} (-67.96\%) & %(\trz{-0.218025})  & 
+                 \tr{0.405248} &            \tr{0.127409} (-68.56\%) & %(\trz{-0.277839})  &   
+                 \tr{0.447038} &            \tr{0.251610} (-43.72\%) & %(\trz{-0.195429})  & 
+                 \tr{0.398667} &            \tr{0.176806} (-55.65\%) \\ 
+
+    \cdashline{1-11}[1pt/4pt]
+
+    Mod. CAT-Net (ours) & & & & & & & & & & \\
+
+    Manual
+    &            \tr{0.073069} &            \tr{0.068126} (-6.76\%) & %(\trz{-0.004942}) &    
+                 \tr{0.135826} &            \tr{0.138428} (\phantom{-}1.92\%) & %(\phantom{-}\trz{0.002602}) & 
+                 \tr{0.280994} &            \tr{0.259591} (-7.62\%) & %(\trz{-0.021403}) &   
+                 \tr{0.408855} &            \underline{\tr{0.395311}} (-3.31\%) & %(\trz{-0.013544}) &
+                 \tr{0.224686} &            \tr{0.215364} (-4.15\%) \\
+    Automatic
+    &            \tr{0.074688} &            \tr{0.067792} (-9.23\%) & %(\trz{-0.006896}) &    
+                 \tr{0.144065} &            \tr{0.145095} (\phantom{-}0.71\%) & %(\phantom{-}\trz{0.001030}) & 
+                 \tr{0.275933} &            \tr{0.247755} (-10.21\%) & %(\trz{-0.028178}) &   
+                 \tr{0.400903} &            \tr{0.377060} (-5.95\%) & %(\trz{-0.023843}) &
+                 \tr{0.223897} &            \tr{0.209426} (-6.46\%) \\
+
+    Mod. TruFor (ours) & & & & & & & & & & \\
+
+    % Manual
+    % &            \tr{0.421588} &            \textbf{\tr{0.405987}} (-3.70\%) & %(\trz{-0.015601}) &    
+    %              \tr{0.320793} &            \textbf{\tr{0.307842}} (-4.04\%) & %(\trz{-0.012951}) & 
+    %              \tr{0.405248} &            \textbf{\tr{0.394954}} (-2.54\%) & %(\trz{-0.010295}) &   
+    %              \tr{0.447038} &            \textbf{\tr{0.438949}} (-1.81\%) & %(\trz{-0.008089}) &
+    %              \tr{0.398667} &            \textbf{\tr{0.386933}} (-2.94\%) \\
+    % Automatic 
+    % &            \tr{0.422488} &            \underline{\tr{0.374177}} (-11.43\%) & %(\trz{-0.048311}) &    
+    %              \tr{0.346266} &            \underline{\tr{0.289528}} (-16.39\%) & %(\trz{-0.056738}) & 
+    %              \tr{0.391564} &            \underline{\tr{0.330175}} (-15.68\%) & %(\trz{-0.061389}) &   
+    %              \tr{0.423082} &            \tr{0.368581} (-12.88\%) & %(\trz{-0.054501}) &
+    %              \tr{0.395850} &            \underline{\tr{0.340615}} (-13.95\%) \\
+
+    Manual
+    &            \tr{0.421588} &            \textbf{\tr{0.405987}} (-3.70\%) & %(\trz{-0.015601}) &    
+                 \tr{0.320793} &            \textbf{\tr{0.307842}} (-4.04\%) & %(\trz{-0.012951}) & 
+                 \tr{0.405248} &            \textbf{\tr{0.394954}} (-2.54\%) & %(\trz{-0.010295}) &   
+                 \tr{0.447038} &            \textbf{\tr{0.438949}} (-1.81\%) & %(\trz{-0.008089}) &
+                 \tr{0.398667} &            \textbf{\tr{0.386933}} (-2.94\%) \\
+    Automatic 
+    &            \tr{0.422488} &            \underline{\tr{0.374177}} (-11.43\%) & %(\trz{-0.048311}) &    
+                 \tr{0.346266} &            \underline{\tr{0.289528}} (-16.39\%) & %(\trz{-0.056738}) & 
+                 \tr{0.391564} &            \underline{\tr{0.330175}} (-15.68\%) & %(\trz{-0.061389}) &   
+                 \tr{0.423082} &            \tr{0.368581} (-12.88\%) & %(\trz{-0.054501}) &
+                 \tr{0.395850} &            \underline{\tr{0.340615}} (-13.95\%) \\
+                 
+    \bottomrule
+
+    %% Fake table footnote
+    % {
+        % \multicolumn{17}{l}{\shortstack[l]{\textsuperscript{1}TruFor and CAT-Net were trained on the IMD2020 dataset, which explains their higher performance and robustness to distractions\\\phantom{1}on this dataset.}} \\
+        \multicolumn{11}{l}{\textsuperscript{1}TruFor and CAT-Net were trained on the IMD2020 dataset, which explains their higher performance and robustness to distractions on this dataset.} \\
+    % }
+
+    \end{tabular}
+\end{table*}
+

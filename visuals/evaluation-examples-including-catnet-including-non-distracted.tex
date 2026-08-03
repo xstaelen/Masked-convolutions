@@ -1,0 +1,624 @@
+\begin{figure*}[tb]
+    % \newcommand{\subfigwidth}{0.135\linewidth} % Define a variable for the width
+    % % space inbetween = 1 - 7 * 0.13 = 0.055
+    % % space between 2 cols = 0.055 / 6 = 0.00916666
+    % % width 2 cols = (0.135 + 0.00916666 + 0.135) = 0.279166666
+    % \newcommand{\subfigwidthTwo}{0.27916667\linewidth}
+    % % width of colm compared to 2 wide col = 0.135 / 0.279166666 = 0.483582
+    % \newcommand{\colwidthInSubfigwidthTwo}{0.483582\linewidth}
+    
+    \newcommand{\subfigwidth}{0.118\linewidth} % Define a variable for the width
+    % space inbetween = 1 - 8 * 0.118 = 0.056
+    % space between 2 cols = 0.056 / 8 = 0.007
+    % width 2 cols = (0.118 + 0.007 + 0.118) = 0.243
+    \newcommand{\subfigwidthTwo}{0.243\linewidth}
+    % width of colm compared to 2 wide col = 0.118 / 0.243 = 0.48559671
+    \newcommand{\colwidthInSubfigwidthTwo}{0.48559671\linewidth}
+    % width 3 cols = (0.118 + 0.007 + 0.118 + 0.007 + 0.118) = 0.368
+    \newcommand{\subfigwidthThree}{0.368\linewidth}
+    % width of colm compared to 3 wide col = 0.118 / 0.368 = 0.3206522
+    \newcommand{\colwidthInSubfigwidthThree}{0.3206522\linewidth}
+    % width of double colm compared to 3 wide col = 0.243 / 0.368 = 0.6603261
+    \newcommand{\colwidthTwoInSubfigwidthThree}{0.6603261\linewidth}
+    
+    \centering
+
+    % Column labels
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \shortstack[c]{\collablesmall{Manipulated}\\\collablesmall{image}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \hspace{-0.3em}
+        \shortstack[c]{\collablesmall{TruFor pred.}\\\collablesmall{(no distraction)}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \hspace{-0.4em}
+        \shortstack[c]{\collablesmall{TruFor pred.}\\\collablesmall{(distracted)}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidthTwo}
+        \centering
+        \hspace{-0.4em}
+        % \collablesmall{Mod. TruFor (ours) manual}
+        \shortstack[c]{\collablesmall{Mod. TruFor (ours)}\\\collablesmall{manual masking}}
+        
+        % \vspace{-0.1em}
+        \vspace{0.2em}
+
+        \hspace{-0.4em}
+        \begin{minipage}[c]{\linewidth}
+            \centering
+
+            \shortstack[c]{\collablesmall{(distracted)}}
+    
+            \begin{minipage}[c]{\colwidthInSubfigwidthTwo}
+                \centering
+                \vspace{-0.1em}
+                % \shortstack[c]{\collablesmall{(distracted)}\\\collablesmall{manual mask}}
+                \shortstack[c]{\collablesmall{manual mask}}
+            \end{minipage}
+            \hfill
+            \begin{minipage}[c]{\colwidthInSubfigwidthTwo}
+                \centering
+                % \shortstack[c]{\collablesmall{(distracted)}\\\collablesmall{prediction}}
+                \shortstack[c]{\collablesmall{prediction}}
+            \end{minipage}
+
+        \end{minipage}
+        
+    \end{minipage}
+    \hfill
+    % \begin{minipage}[c]{\subfigwidthThree}
+    %     \centering
+    %     \collablesmall{Mod. TruFor (ours) automatic masking}
+    %     % \vspace{0.3em}
+    %     \begin{minipage}[c]{\colwidthInSubfigwidthThree}
+    %         \centering
+    %         \shortstack[c]{\collablesmall{(distracted)}\\\collablesmall{automatic mask}}
+    %     \end{minipage}
+    %     \hfill
+    %     \begin{minipage}[c]{\colwidthInSubfigwidthThree}
+    %         \centering
+    %         \shortstack[c]{\collablesmall{(distracted)}\\\collablesmall{prediction}}
+    %     \end{minipage}
+    %     \hfill
+    %     \begin{minipage}[c]{\colwidthInSubfigwidthThree}
+    %         \centering
+    %         \shortstack[c]{\collablesmall{(no distraction)}\\\collablesmall{prediction}}
+    %     \end{minipage}
+    % \end{minipage}
+    \begin{minipage}[c]{\subfigwidthThree}
+        \centering
+
+        \hspace{-0.4em}
+        \shortstack[c]{\collablesmall{Mod. TruFor (ours)}\\\collablesmall{automatic masking}}
+        
+        \vspace{0.2em}
+
+        \hspace{-0.4em}
+        \begin{minipage}[c]{\colwidthTwoInSubfigwidthThree}
+            \centering
+            
+            \shortstack[c]{\collablesmall{(distracted)}}
+            
+            \begin{minipage}[c]{\colwidthInSubfigwidthTwo}
+                \centering
+                \vspace{-0.1em}
+                % \hspace{-0.5em}
+                \shortstack[c]{\collablesmall{automatic mask}}
+            \end{minipage}
+            \hfill
+            \begin{minipage}[c]{\colwidthInSubfigwidthTwo}
+                \centering
+                \shortstack[c]{\collablesmall{prediction}}
+            \end{minipage}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[c]{\colwidthInSubfigwidthThree}
+            \centering
+            
+            \shortstack[c]{\collablesmall{(no distraction)}}
+    
+            \begin{minipage}[c]{\linewidth}
+                \centering
+                \shortstack[c]{\collablesmall{prediction}}
+            \end{minipage}
+        \end{minipage}
+        
+    \end{minipage}
+
+    
+
+    \vspace{0.3em} % Add vertical spacing between labels and images
+
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/splicing-93_1536x1024_s_5__input_annotated.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor/splicing-93_1536x1024_s_5__input_annotated.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/splicing-93_1536x1024_s_5__pred_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor/splicing-93_1536x1024_s_5__pred_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/splicing-93_1536x1024_s_5__pred_distracted_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor/splicing-93_1536x1024_s_5__pred_distracted_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/splicing-93_1536x1024_s_5__cover_generated.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/splicing-93_1536x1024_s_5__pred_cover_generated_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor/splicing-93_1536x1024_s_5__pred_cover_generated_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/splicing-93_1536x1024_s_5__cover_iterative_dilation_5.0_round_1.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/splicing-93_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor/splicing-93_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor-non-distracted/splicing-93_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor-non-distracted/splicing-93_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg}
+    \end{subfigure}
+    
+    \vspace{-0.35em} % Add vertical spacing between labels and images
+
+    \begin{minipage}[c]{\subfigwidth}
+        \centering %%%% image
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.833}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.018}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.832}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.817}
+        % \scorelabletiny{0.842}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.828}
+    \end{minipage}
+
+    \vspace{0.3em} % Add vertical spacing between rows
+
+        \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/fb99d41f51_1536x1024_s_6__input_annotated.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor/fb99d41f51_1536x1024_s_6__input_annotated.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/fb99d41f51_1536x1024_s_6__pred_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor/fb99d41f51_1536x1024_s_6__pred_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/fb99d41f51_1536x1024_s_6__pred_distracted_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor/fb99d41f51_1536x1024_s_6__pred_distracted_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/fb99d41f51_1536x1024_s_6__cover_generated.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/fb99d41f51_1536x1024_s_6__pred_cover_generated_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor/fb99d41f51_1536x1024_s_6__pred_cover_generated_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/fb99d41f51_1536x1024_s_6__cover_iterative_dilation_5.0_round_1.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor/fb99d41f51_1536x1024_s_6__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor/fb99d41f51_1536x1024_s_6__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/TruFor-non-distracted/fb99d41f51_1536x1024_s_6__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-TruFor-non-distracted/fb99d41f51_1536x1024_s_6__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg}
+    \end{subfigure}
+
+    \vspace{-0.35em} % Add vertical spacing between labels and images
+
+    \begin{minipage}[c]{\subfigwidth}
+        \centering %%%% image
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.772}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.035}
+    \end{minipage}
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.839}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.832}
+        % \scorelabletiny{0.810}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.848}
+    \end{minipage}
+
+
+
+
+
+
+
+    \vspace{0.8em} % Add vertical spacing between rows
+
+    % Column labels
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \shortstack[c]{\collablesmall{Manipulated}\\\collablesmall{image}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \hspace{-0.3em}
+        \shortstack[c]{\collablesmall{CAT-Net pred.}\\\collablesmall{(no distraction)}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \hspace{-0.4em}
+        \shortstack[c]{\collablesmall{CAT-Net pred.}\\\collablesmall{(distracted)}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidthTwo}
+        \centering
+        \hspace{-0.4em}
+        % \collablesmall{Mod. CAT-Net (ours) manual}
+        \shortstack[c]{\collablesmall{Mod. CAT-Net (ours)}\\\collablesmall{manual masking}}
+        
+        % \vspace{-0.1em}
+        \vspace{0.2em}
+
+        \hspace{-0.4em}
+        \begin{minipage}[c]{\linewidth}
+            \centering
+
+            \shortstack[c]{\collablesmall{(distracted)}}
+    
+            \begin{minipage}[c]{\colwidthInSubfigwidthTwo}
+                \centering
+                \vspace{-0.1em}
+                % \shortstack[c]{\collablesmall{(distracted)}\\\collablesmall{manual mask}}
+                \shortstack[c]{\collablesmall{manual mask}}
+            \end{minipage}
+            \hfill
+            \begin{minipage}[c]{\colwidthInSubfigwidthTwo}
+                \centering
+                % \shortstack[c]{\collablesmall{(distracted)}\\\collablesmall{prediction}}
+                \shortstack[c]{\collablesmall{prediction}}
+            \end{minipage}
+
+        \end{minipage}
+        
+    \end{minipage}
+    \hfill
+    % \begin{minipage}[c]{\subfigwidthThree}
+    %     \centering
+    %     \collablesmall{Mod. CAT-Net (ours) automatic masking}
+    %     % \vspace{0.3em}
+    %     \begin{minipage}[c]{\colwidthInSubfigwidthThree}
+    %         \centering
+    %         \shortstack[c]{\collablesmall{(distracted)}\\\collablesmall{automatic mask}}
+    %     \end{minipage}
+    %     \hfill
+    %     \begin{minipage}[c]{\colwidthInSubfigwidthThree}
+    %         \centering
+    %         \shortstack[c]{\collablesmall{(distracted)}\\\collablesmall{prediction}}
+    %     \end{minipage}
+    %     \hfill
+    %     \begin{minipage}[c]{\colwidthInSubfigwidthThree}
+    %         \centering
+    %         \shortstack[c]{\collablesmall{(no distraction)}\\\collablesmall{prediction}}
+    %     \end{minipage}
+    % \end{minipage}
+    \begin{minipage}[c]{\subfigwidthThree}
+        \centering
+
+        \hspace{-0.4em}
+        \shortstack[c]{\collablesmall{Mod. CAT-Net (ours)}\\\collablesmall{automatic masking}}
+        
+        \vspace{0.2em}
+
+        \hspace{-0.4em}
+        \begin{minipage}[c]{\colwidthTwoInSubfigwidthThree}
+            \centering
+            
+            \shortstack[c]{\collablesmall{(distracted)}}
+            
+            \begin{minipage}[c]{\colwidthInSubfigwidthTwo}
+                \centering
+                \vspace{-0.1em}
+                % \hspace{-0.5em}
+                \shortstack[c]{\collablesmall{automatic mask}}
+            \end{minipage}
+            \hfill
+            \begin{minipage}[c]{\colwidthInSubfigwidthTwo}
+                \centering
+                \shortstack[c]{\collablesmall{prediction}}
+            \end{minipage}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[c]{\colwidthInSubfigwidthThree}
+            \centering
+            
+            \shortstack[c]{\collablesmall{(no distraction)}}
+    
+            \begin{minipage}[c]{\linewidth}
+                \centering
+                \shortstack[c]{\collablesmall{prediction}}
+            \end{minipage}
+        \end{minipage}
+        
+    \end{minipage}
+    
+
+    \vspace{0.3em} % Add vertical spacing between labels and images
+
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/c9qa804_0_1536x1024_s_5__input_annotated.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net/c9qa804_0_1536x1024_s_5__input_annotated.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/c9qa804_0_1536x1024_s_5__pred_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net/c9qa804_0_1536x1024_s_5__pred_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/c9qa804_0_1536x1024_s_5__pred_distracted_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net/c9qa804_0_1536x1024_s_5__pred_distracted_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/c9qa804_0_1536x1024_s_5__cover_generated.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/c9qa804_0_1536x1024_s_5__pred_cover_generated_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net/c9qa804_0_1536x1024_s_5__pred_cover_generated_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/c9qa804_0_1536x1024_s_5__cover_iterative_dilation_5.0_round_1.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/c9qa804_0_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net/c9qa804_0_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net-non-distracted/c9qa804_0_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net-non-distracted/c9qa804_0_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg}
+    \end{subfigure}
+
+    \vspace{-0.35em} % Add vertical spacing between labels and images
+
+    \begin{minipage}[c]{\subfigwidth}
+        \centering %%%% image
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.793}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.112}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.621}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.481}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.755}
+    \end{minipage}
+
+
+    \vspace{0.3em} % Add vertical spacing between rows
+
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/984ffb8811_1536x1024_s_4__input_annotated.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net/984ffb8811_1536x1024_s_4__input_annotated.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/984ffb8811_1536x1024_s_4__pred_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net/984ffb8811_1536x1024_s_4__pred_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/984ffb8811_1536x1024_s_4__pred_distracted_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net/984ffb8811_1536x1024_s_4__pred_distracted_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/984ffb8811_1536x1024_s_4__cover_generated.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/984ffb8811_1536x1024_s_4__pred_cover_generated_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net/984ffb8811_1536x1024_s_4__pred_cover_generated_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/984ffb8811_1536x1024_s_4__cover_iterative_dilation_5.0_round_1.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net/984ffb8811_1536x1024_s_4__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net/984ffb8811_1536x1024_s_4__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        % \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/CAT-Net-non-distracted/984ffb8811_1536x1024_s_4__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.png}
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/evaluation_examples/JPG-CAT-Net-non-distracted/984ffb8811_1536x1024_s_4__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg}
+    \end{subfigure}
+
+    \vspace{-0.35em} % Add vertical spacing between labels and images
+
+    \begin{minipage}[c]{\subfigwidth}
+        \centering %%%% image
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.684}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.040}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.671}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \phantom{\scorelabletiny{0.000}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.505}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{\subfigwidth}
+        \centering
+        \scorelabletiny{0.584}
+    \end{minipage}
+
+    \caption{
+    % Manipulated images (forgery in orange, distraction in blue) with corresponding TruFor~\cite{TruFor} and proposed modified TruFor predictions and F1* scores, using both manual masking and automatic masking, with and without distractions.
+    Manipulated images (forgery in orange, distraction in blue) with predictions and corresponding F1* scores~\eqref{eq:F1*-score} for TruFor~\cite{TruFor}, CAT-Net~\cite{CAT-Net}, and our proposed modified versions, using both manual masking and automatic masking, evaluated with and without distractions. 
+    The modified models significantly outperform the originals in the presence of distractions, demonstrating  the effectiveness of the masked-convolution approach.
+    Furthermore, on non-distracted images, the modified models with automatic masking achieve performance comparable to the originals, indicating that the approach can be safely applied in both scenarios.
+    }
+    \label{figure:evaluation:examples}
+\end{figure*}

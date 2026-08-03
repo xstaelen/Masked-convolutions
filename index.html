@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ignoring the Decoy | Project Page</title>
+  <meta name="description" content="Project page for Ignoring the Decoy: Exposing and Tackling Forensic Distractions in Image Forgery Localization using Masked Convolutions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700|Noto+Sans:400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+<body>
+  <nav class="navbar is-light is-fixed-top top-nav" role="navigation" aria-label="main navigation">
+    <div class="container is-max-desktop">
+      <div class="navbar-brand">
+        <a class="navbar-item nav-brand" href="#top">Ignoring the Decoy</a>
+      </div>
+      <div class="navbar-menu is-active">
+        <div class="navbar-end">
+          <a class="navbar-item" href="#abstract">Abstract</a>
+          <a class="navbar-item" href="#problem">Problem</a>
+          <a class="navbar-item" href="#method">Method</a>
+          <a class="navbar-item" href="#results">Results</a>
+          <a class="navbar-item" href="#citation">Citation</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero paper-hero" id="top">
+    <div class="hero-body">
+      <div class="container is-max-desktop has-text-centered">
+        <h1 class="title is-1 publication-title">
+          Ignoring the Decoy:</br>
+          <span class="title-smaller">
+            Exposing and Tackling <span class="distraction">Forensic Distractions</span></br>
+            in <span class="forgery-localization">Image Forgery Localization</span></br>
+            using <span class="masked-convolution">Masked Convolutions</span>
+          </span>
+        </h1>
+        <div class="is-size-5 publication-venue">
+          <span>
+            IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) Workshops, 2026
+          </span>
+        </div>
+        <div class="is-size-5 publication-authors">
+          <span class="author-block"><a href="https://scholar.google.com/citations?user=5IKGkfcAAAAJ" target="_blank" rel="noopener">Xander Staelens</a>,</span>
+          <span class="author-block"><a href="https://scholar.google.com/citations?user=0Y690dMAAAAJ" target="_blank" rel="noopener">Peter Lambert</a>,</span>
+          <span class="author-block"><a href="https://scholar.google.com/citations?user=CaDakRwAAAAJ" target="_blank" rel="noopener">Glenn Van Wallendael</a>,</span>
+          <span class="author-block"><a href="https://scholar.google.com/citations?user=SNmMEJEAAAAJ" target="_blank" rel="noopener">Hannes Mareen</a></span>
+        </div>
+        <div class="is-size-5 publication-authors">
+          <span class="author-block">IDLab, Ghent University – imec</span>
+        </div>
+        <!-- <span class="venue-pill">WACV 2026 Workshops</span> -->
+        <div class="publication-links">
+          <span class="link-block">
+            <a href="https://openaccess.thecvf.com/content/WACV2026W/SynRDinBAS/html/Staelens_Ignoring_the_Decoy_Exposing_and_Tackling_Forensic_Distractions_in_Image_WACVW_2026_paper.html" class="external-link button is-normal is-rounded is-primary" target="_blank" rel="noopener">
+              <span class="icon"><i class="fas fa-file-pdf"></i></span>
+              <span>Paper</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="https://github.com/IDLabMedia/Masked-convolutions" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
+              <span class="icon"><i class="fab fa-github"></i></span>
+              <span>Code</span>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero-figure-section">
+    <div class="container is-max-desktop">
+      <div class="hero-figure-grid">
+        <figure class="hero-panel"><img src="./visuals/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__input_annotated.jpg" alt="Forged image with distraction"><figcaption>(a) Forged image with distraction</figcaption></figure>
+        <figure class="hero-panel"><img src="./visuals/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__gt_mask.jpg" alt="Ground-truth mask"><figcaption>(b) Ground-truth mask</figcaption></figure>
+        <figure class="hero-panel"><img src="./visuals/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_RdBu_r.jpg" alt="TruFor no distraction"><figcaption>(c) TruFor (no distraction)</figcaption></figure>
+        <figure class="hero-panel"><img src="./visuals/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_distracted_RdBu_r.jpg" alt="TruFor with distraction"><figcaption>(d) TruFor (with distraction, fails)</figcaption></figure>
+        <figure class="hero-panel"><img src="./visuals/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_cover_generated_RdBu_r.jpg" alt="Manual masking result"><figcaption>(e) Ours, manual masking</figcaption></figure>
+        <figure class="hero-panel"><img src="./visuals/Forgery_DPP8_TIFF0382_90_1536x1024_s_1__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg" alt="Automatic masking result"><figcaption>(f) Ours, automatic masking</figcaption></figure>
+      </div>
+      <p class="figure-caption">Before adding the logo as a forensic distraction, TruFor detects the forgery with high accuracy (c). After adding the distraction, TruFor fails (d). With our masked-convolution approach, TruFor ignores the distraction and recovers — using both manual (e) and automatic (f) masking.</p>
+    </div>
+  </section>
+
+  <section class="section" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 section-title">Abstract</h2>
+          <div class="content has-text-justified abstract-box">
+            <p>
+              Manipulating images has become increasingly easier due to advanced editing tools, leading to a surge in forged images being shared online, raising the need for robust multimedia forensics. Particularly, <b class="forgery-localization">image forgery localization (IFL)</b> methods aim to detect and localize image tampering.</br></br>
+
+              In this paper, we expose and quantify the impact of <b class="distraction">forensic distractions</b> on state-of-the-art IFL models. We define distractions as benign visual elements that occur in real-world scenarios, such as logos and visible watermarks. Our analysis, first of its kind, reveals that some recent IFL models (like CAT-Net and TruFor) are highly sensitive to distractions, suffering average performance degradations of <b>15.06%</b> and <b>55.65%</b>, respectively.</br></br>
+
+              To address this issue, we propose <b class="masked-convolution">masked convolutions</b>, which enable CNN-based IFL methods to ignore masked regions during inference. Masked convolutions require no retraining, allowing existing models to be adapted seamlessly. Distractions can be manually masked, or automatically through a two-step detection process.</br></br>
+
+              Experiments show that our proposed approaches significantly improve robustness against distractions, reducing performance degradation to just <b>4.15%</b> for CAT-Net and <b>2.94%</b> for TruFor. This demonstrates our method's potential as a distraction-aware technique to enhance the real-world applicability of IFL models.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt-section" id="problem">
+    <div class="container is-max-desktop">
+      <div class="has-text-centered section-heading">
+        <h2 class="title is-3 section-title">Forensic Distractions</h2>
+        <p class="section-lead">
+          Benign overlays such as logos, visible watermarks or blurred faces can act as <b class="distraction">forensic distractions</b>, pulling IFL models away from the <b class="ground-truth">true manipulated region</b>. Below, predictions by TruFor and CAT-Net are shown, both with and without distraction present (red = high suspicion, blue = low). Performance is measured with the <span class="f1star-trigger">F1* score<span class="f1star-popup"><strong>F1* score</strong> excludes distraction pixels from the evaluation. Only pixels where the distraction mask M&nbsp;=&nbsp;0 are considered. This way models are neither rewarded nor penalized for detecting the distraction itself.<br><br><code>F1* = 2·TP / (2·TP + FP + FN)</code><br><em>(computed only over non-distraction pixels)</em></span></span>, which excludes distraction pixels so models are judged solely on detecting the actual forgery.</p>
+      </div>
+
+      <div class="comparison-group">
+        <div class="three-col-grid grid-header">
+          <div>Manipulated image</div>
+          <div>Prediction (no distraction)</div>
+          <div>Prediction (distracted)</div>
+        </div>
+       
+        <div class="model-divider"><a href="https://github.com/grip-unina/TruFor" target="_blank" rel="noopener">TruFor</a></div>
+        
+        <div class="three-col-grid example-row">
+          <div class="comparison-card"><img src="./visuals/dffcbcf407_1536x1024_s_2__input_annotated.jpg" alt="TruFor example 1 manipulated image"></div>
+          <div class="comparison-card"><img src="./visuals/dffcbcf407_1536x1024_s_2__pred_RdBu_r.jpg" alt="TruFor example 1 prediction"><div class="card-pills"><span class="score-badge good">F1*: 0.715</span></div></div>
+          <div class="comparison-card"><img src="./visuals/dffcbcf407_1536x1024_s_2__pred_distracted_RdBu_r.jpg" alt="TruFor example 1 distracted prediction"><div class="card-pills"><span class="score-badge bad">F1*: 0.003</span></div></div>
+        </div>
+
+        <div class="three-col-grid example-row">
+          <div class="comparison-card"><img src="./visuals/c9u5f90_0_1536x1024_s_3__input_annotated.jpg" alt="TruFor example 2 manipulated image"></div>
+          <div class="comparison-card"><img src="./visuals/c9u5f90_0_1536x1024_s_3__pred_RdBu_r.jpg" alt="TruFor example 2 prediction"><div class="card-pills"><span class="score-badge good">F1*: 0.820</span></div></div>
+          <div class="comparison-card"><img src="./visuals/c9u5f90_0_1536x1024_s_3__pred_distracted_RdBu_r.jpg" alt="TruFor example 2 distracted prediction"><div class="card-pills"><span class="score-badge bad">F1*: 0.157</span></div></div>
+        </div>
+
+        <div class="model-divider"><a href="https://github.com/mjkwon2021/CAT-Net" target="_blank" rel="noopener">CAT-Net</a></div>
+
+        <div class="three-col-grid example-row">
+          <div class="comparison-card"><img src="./visuals/Forgery_JPGDisall_9_1536x1024_s_1__input_annotated.jpg" alt="CAT-Net example 1 manipulated image"></div>
+          <div class="comparison-card"><img src="./visuals/Forgery_JPGDisall_9_1536x1024_s_1__pred_RdBu_r.jpg" alt="CAT-Net example 1 prediction"><div class="card-pills"><span class="score-badge good">F1*: 0.635</span></div></div>
+          <div class="comparison-card"><img src="./visuals/Forgery_JPGDisall_9_1536x1024_s_1__pred_distracted_RdBu_r.jpg" alt="CAT-Net example 1 distracted prediction"><div class="card-pills"><span class="score-badge bad">F1*: 0.101</span></div></div>
+        </div>
+
+        <div class="three-col-grid example-row">
+          <div class="comparison-card"><img src="./visuals/70cd61debf_1536x1024_s_2__input_annotated.jpg" alt="CAT-Net example 2 manipulated image"></div>
+          <div class="comparison-card"><img src="./visuals/70cd61debf_1536x1024_s_2__pred_RdBu_r.jpg" alt="CAT-Net example 2 prediction"><div class="card-pills"><span class="score-badge good">F1*: 0.797</span></div></div>
+          <div class="comparison-card"><img src="./visuals/70cd61debf_1536x1024_s_2__pred_distracted_RdBu_r.jpg" alt="CAT-Net example 2 distracted prediction"><div class="card-pills"><span class="score-badge medium">F1*: 0.491</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="method">
+    <div class="container is-max-desktop">
+      <div class="has-text-centered section-heading">
+        <h2 class="title is-3 section-title">Method</h2>
+        <p class="section-lead">We developed <b class="masked-convolution">masked convolutions</b>: drop-in replacements for standard convolution and pooling layers that ignore explicitly masked regions during inference. We implemented them into both <a href="https://github.com/grip-unina/TruFor" target="_blank" rel="noopener"><b class="forgery-localization">TruFor</b></a> and <a href="https://github.com/mjkwon2021/CAT-Net" target="_blank" rel="noopener"><b class="forgery-localization">CAT-Net</b></a>, allowing these models to be made distraction-aware without requiring any retraining. Existing pretrained weights are reused as-is.</p>
+      </div>
+
+      <div class="columns is-variable is-6">
+        <div class="column">
+          <div class="method-card">
+            <h3 class="title is-5">Masked convolutions</h3>
+            <p>
+              Masked convolutions are drop-in replacements for standard Conv2D and pooling layers, which take an additional binary mask alongside the input.
+              Masked regions are treated as being cut from the input: (1) padding is applied to the holes, mirroring the inputs outer padding, before the (2) convolution is applied. The masked regions are then zeroed out and the (3) updated mask is propagated to the next layer.
+              No retraining is needed, meaning existing weights can be reused directly.</p>
+            <img src="./visuals/masked-convolution-small-embeded.png" alt="Masked convolution diagram" style="width:100%; margin-top:1rem;">
+          </div>
+        </div>
+        <div class="column">
+          <div class="method-card">
+            <h3 class="title is-5">Automatic masking</h3>
+            <p>
+              Instead of manually masking distractions, we can automatically generate a distraction mask using an iterative two-step process: (1) run inference without a mask, (2) threshold the prediction to generate a distraction mask, then (3) run inference again with that mask. This loop can be repeated for a configurable number of rounds.</p>
+            <img src="./visuals/diagram-automatic-masking-embeded.png" alt="Automatic masking diagram" style="width:100%; margin-top:1rem;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt-section" id="results">
+    <div class="container is-max-desktop">
+      <div class="has-text-centered section-heading">
+        <h2 class="title is-3 section-title">Results</h2>
+        <p class="section-lead">
+          Some IFL models, particularly <b class="forgery-localization">CAT-Net</b> and <b class="forgery-localization">TruFor</b>, are highly sensitive to <b class="distraction">forensic distractions</b>, suffering large performance drops when distractions are present. Adapting them with <b class="masked-convolution">masked convolutions</b> consistently recovers this lost performance.
+        </p>
+      </div>
+
+      <div class="content-block">
+        <h3 class="title is-4">Quantitative results</h3>
+        <div class="table-scroll table-breakout">
+          <table class="table results-table is-fullwidth">
+            <thead>
+              <tr>
+                <th rowspan="2">Model</th>
+                <th colspan="2">DSO-1</th>
+                <th colspan="2">VIPP</th>
+                <th colspan="2">OpenForensics</th>
+                <th colspan="2">IMD2020</th>
+                <th colspan="2">Average</th>
+              </tr>
+              <tr>
+                <th>Orig</th><th>Distr.</th>
+                <th>Orig</th><th>Distr.</th>
+                <th>Orig</th><th>Distr.</th>
+                <th>Orig</th><th>Distr.</th>
+                <th>Orig</th><th>Distr.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DCT</td>
+                <td>.185</td><td>.183 <span class="delta good">-0.81%</span></td>
+                <td>.150</td><td>.139 <span class="delta medium">-7.73%</span></td>
+                <td>.120</td><td>.115 <span class="delta good">-4.34%</span></td>
+                <td>.131</td><td>.124 <span class="delta medium">-5.44%</span></td>
+                <td>.147</td><td>.140 <span class="delta good">-4.34%</span></td>
+              </tr>
+              <tr>
+                <td>ADQ1</td>
+                <td>.214</td><td>.215 <span class="delta positive">+0.64%</span></td>
+                <td>.176</td><td>.177 <span class="delta positive">+0.92%</span></td>
+                <td>.113</td><td>.112 <span class="delta good">-1.28%</span></td>
+                <td>.133</td><td>.134 <span class="delta positive">+0.42%</span></td>
+                <td>.159</td><td>.159 <span class="delta positive">+0.33%</span></td>
+              </tr>
+              <tr>
+                <td>BLK</td>
+                <td>.181</td><td>.178 <span class="delta good">-2.02%</span></td>
+                <td>.137</td><td>.130 <span class="delta medium">-5.08%</span></td>
+                <td>.080</td><td>.076 <span class="delta good">-4.19%</span></td>
+                <td>.115</td><td>.112 <span class="delta good">-2.57%</span></td>
+                <td>.128</td><td>.124 <span class="delta good">-3.29%</span></td>
+              </tr>
+              <tr>
+                <td>CAGI</td>
+                <td>.224</td><td>.228 <span class="delta positive">+1.67%</span></td>
+                <td>.158</td><td>.166 <span class="delta positive">+4.96%</span></td>
+                <td>.065</td><td>.068 <span class="delta positive">+4.74%</span></td>
+                <td>.111</td><td>.120 <span class="delta medium">+7.90%</span></td>
+                <td>.139</td><td>.145 <span class="delta positive">+4.20%</span></td>
+              </tr>
+              <tr>
+                <td>PSCC-Net</td>
+                <td>.061</td><td>.051 <span class="delta severe">-16.91%</span></td>
+                <td>.135</td><td>.120 <span class="delta medium">-11.15%</span></td>
+                <td>.078</td><td>.058 <span class="delta severe">-26.22%</span></td>
+                <td>.098</td><td>.082 <span class="delta severe">-16.33%</span></td>
+                <td>.093</td><td>.078 <span class="delta severe">-16.64%</span></td>
+              </tr>
+              <tr>
+                <td>CAT-Net</td>
+                <td>.073</td><td>.065 <span class="delta medium">-11.42%</span></td>
+                <td>.136</td><td>.093 <span class="delta severe">-31.66%</span></td>
+                <td>.281</td><td>.230 <span class="delta severe">-18.20%</span></td>
+                <td>.409</td><td>.376 <span class="delta medium">-8.04%</span></td>
+                <td>.225</td><td>.191 <span class="delta severe">-15.06%</span></td>
+              </tr>
+              <tr>
+                <td>TruFor</td>
+                <td>.422</td><td>.225 <span class="delta severe">-46.53%</span></td>
+                <td>.321</td><td>.103 <span class="delta severe">-67.96%</span></td>
+                <td>.405</td><td>.127 <span class="delta severe">-68.56%</span></td>
+                <td>.447</td><td>.252 <span class="delta severe">-43.72%</span></td>
+                <td>.399</td><td>.177 <span class="delta severe">-55.65%</span></td>
+              </tr>
+              <tr class="highlight-row-masked">
+                <td>Mod. CAT-Net Manual</td>
+                <td>.073</td><td>.068 <span class="delta medium">-6.76%</span></td>
+                <td>.136</td><td>.138 <span class="delta positive">+1.92%</span></td>
+                <td>.281</td><td>.260 <span class="delta medium">-7.62%</span></td>
+                <td>.409</td><td><u>.395</u> <span class="delta good">-3.31%</span></td>
+                <td>.225</td><td>.215 <span class="delta good">-4.15%</span></td>
+              </tr>
+              <tr class="highlight-row-masked">
+                <td>Mod. CAT-Net Auto</td>
+                <td>.075</td><td>.068 <span class="delta medium">-9.23%</span></td>
+                <td>.144</td><td>.145 <span class="delta positive">+0.71%</span></td>
+                <td>.276</td><td>.248 <span class="delta medium">-10.21%</span></td>
+                <td>.401</td><td>.377 <span class="delta medium">-5.95%</span></td>
+                <td>.224</td><td>.209 <span class="delta medium">-6.46%</span></td>
+              </tr>
+              <tr class="highlight-row-masked best-row">
+                <td>Mod. TruFor Manual</td>
+                <td>.422</td><td><strong>.406</strong> <span class="delta good">-3.70%</span></td>
+                <td>.321</td><td><strong>.308</strong> <span class="delta good">-4.04%</span></td>
+                <td>.405</td><td><strong>.395</strong> <span class="delta good">-2.54%</span></td>
+                <td>.447</td><td><strong>.439</strong> <span class="delta good">-1.81%</span></td>
+                <td>.399</td><td><strong>.387</strong> <span class="delta good">-2.94%</span></td>
+              </tr>
+              <tr class="highlight-row-masked">
+                <td>Mod. TruFor Auto</td>
+                <td>.422</td><td><u>.374</u> <span class="delta medium">-11.43%</span></td>
+                <td>.346</td><td><u>.290</u> <span class="delta severe">-16.39%</span></td>
+                <td>.392</td><td><u>.330</u> <span class="delta severe">-15.68%</span></td>
+                <td>.423</td><td>.369 <span class="delta medium">-12.88%</span></td>
+                <td>.396</td><td><u>.341</u> <span class="delta medium">-13.95%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-footnote">TruFor and CAT-Net were trained on the IMD2020 dataset, which explains their higher performance and robustness to distractions on this dataset.</p>
+      </div>
+
+      <div class="content-block">
+        <h3 class="title is-4">Visual comparison</h3>
+        <p class="section-note">
+          Prediction heatmaps by TruFor and CAT-Net (red = high suspicion, blue = low). Performance is measured with the <span class="f1star-trigger">F1* score<span class="f1star-popup"><strong>F1* score</strong> excludes distraction pixels from the evaluation. Only pixels where the distraction mask M&nbsp;=&nbsp;0 are considered. This way models are neither rewarded nor penalized for detecting the distraction itself.<br><br><code>F1* = 2·TP / (2·TP + FP + FN)</code><br><em>(computed only over non-distraction pixels)</em></span></span>. Hover the mask tags to see the used distraction mask.</p>
+
+        <div class="comparison-group figure-breakout">
+          <div class="six-col-grid grid-header">
+            <div class="figure-table-header">Manipulated</br>image</div>
+            <div class="figure-table-header">No distraction</div>
+            <div class="figure-table-header">Distracted</div>
+            <div class="figure-table-header">Manual prediction</div>
+            <div class="figure-table-header">Auto prediction</div>
+            <div class="figure-table-header">Auto prediction<br>(no distraction)</div>
+          </div>
+
+          <div class="model-divider"><a href="https://github.com/grip-unina/TruFor" target="_blank" rel="noopener">TruFor</a></div>
+
+          <!-- <div class="model-divider">splicing-93</div> -->
+          <div class="six-col-grid example-row">
+            <div class="comparison-card"><img src="./visuals/splicing-93_1536x1024_s_5__input_annotated.jpg" alt="input"></div>
+            <div class="comparison-card"><img src="./visuals/splicing-93_1536x1024_s_5__pred_RdBu_r.jpg" alt="no distr"><div class="card-pills"><span class="score-badge good">F1*: 0.833</span></div></div>
+            <div class="comparison-card"><img src="./visuals/splicing-93_1536x1024_s_5__pred_distracted_RdBu_r.jpg" alt="distracted"><div class="card-pills"><span class="score-badge bad">F1*: 0.018</span></div></div>
+            <div class="comparison-card has-mask"><img class="main-img" src="./visuals/splicing-93_1536x1024_s_5__pred_cover_generated_RdBu_r.jpg" data-mask="./visuals/splicing-93_1536x1024_s_5__cover_generated.jpg" alt="manual pred"><div class="card-pills"><span class="score-badge good">F1*: 0.832</span><span class="mask-pill">Mask</span></div></div>
+            <div class="comparison-card has-mask"><img class="main-img" src="./visuals/splicing-93_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg" data-mask="./visuals/splicing-93_1536x1024_s_5__cover_iterative_dilation_5.0_round_1.jpg" alt="auto pred"><div class="card-pills"><span class="score-badge good">F1*: 0.817</span><span class="mask-pill">Mask</span></div></div>
+            <div class="comparison-card"><img src="./visuals/non_distracted_splicing-93_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg" alt="auto pred no distr"><div class="card-pills"><span class="score-badge good">F1*: 0.828</span></div></div>
+          </div>
+
+          <!-- <div class="model-divider">fb99d41f51</div> -->
+          <div class="six-col-grid example-row">
+            <div class="comparison-card"><img src="./visuals/fb99d41f51_1536x1024_s_6__input_annotated.jpg" alt="input"></div>
+            <div class="comparison-card"><img src="./visuals/fb99d41f51_1536x1024_s_6__pred_RdBu_r.jpg" alt="no distr"><div class="card-pills"><span class="score-badge good">F1*: 0.692</span></div></div>
+            <div class="comparison-card"><img src="./visuals/fb99d41f51_1536x1024_s_6__pred_distracted_RdBu_r.jpg" alt="distracted"><div class="card-pills"><span class="score-badge bad">F1*: 0.027</span></div></div>
+            <div class="comparison-card has-mask"><img class="main-img" src="./visuals/fb99d41f51_1536x1024_s_6__pred_cover_generated_RdBu_r.jpg" data-mask="./visuals/fb99d41f51_1536x1024_s_6__cover_generated.jpg" alt="manual pred"><div class="card-pills"><span class="score-badge good">F1*: 0.688</span><span class="mask-pill">Mask</span></div></div>
+            <div class="comparison-card has-mask"><img class="main-img" src="./visuals/fb99d41f51_1536x1024_s_6__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg" data-mask="./visuals/fb99d41f51_1536x1024_s_6__cover_iterative_dilation_5.0_round_1.jpg" alt="auto pred"><div class="card-pills"><span class="score-badge good">F1*: 0.621</span><span class="mask-pill">Mask</span></div></div>
+            <div class="comparison-card"><img src="./visuals/non_distracted_fb99d41f51_1536x1024_s_6__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg" alt="auto pred no distr"><div class="card-pills"><span class="score-badge good">F1*: 0.661</span></div></div>
+          </div>
+
+          <div class="model-divider"><a href="https://github.com/mjkwon2021/CAT-Net" target="_blank" rel="noopener">CAT-Net</a></div>
+
+          <!-- <div class="model-divider">984ffb8811</div> -->
+          <div class="six-col-grid example-row">
+            <div class="comparison-card"><img src="./visuals/984ffb8811_1536x1024_s_4__input_annotated.jpg" alt="input"></div>
+            <div class="comparison-card"><img src="./visuals/984ffb8811_1536x1024_s_4__pred_RdBu_r.jpg" alt="no distr"><div class="card-pills"><span class="score-badge good">F1*: 0.636</span></div></div>
+            <div class="comparison-card"><img src="./visuals/984ffb8811_1536x1024_s_4__pred_distracted_RdBu_r.jpg" alt="distracted"><div class="card-pills"><span class="score-badge bad">F1*: 0.069</span></div></div>
+            <div class="comparison-card has-mask"><img class="main-img" src="./visuals/984ffb8811_1536x1024_s_4__pred_cover_generated_RdBu_r.jpg" data-mask="./visuals/984ffb8811_1536x1024_s_4__cover_generated.jpg" alt="manual pred"><div class="card-pills"><span class="score-badge good">F1*: 0.636</span><span class="mask-pill">Mask</span></div></div>
+            <div class="comparison-card has-mask"><img class="main-img" src="./visuals/984ffb8811_1536x1024_s_4__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg" data-mask="./visuals/984ffb8811_1536x1024_s_4__cover_iterative_dilation_5.0_round_1.jpg" alt="auto pred"><div class="card-pills"><span class="score-badge good">F1*: 0.575</span><span class="mask-pill">Mask</span></div></div>
+            <div class="comparison-card"><img src="./visuals/non_distracted_984ffb8811_1536x1024_s_4__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg" alt="auto pred no distr"><div class="card-pills"><span class="score-badge good">F1*: 0.618</span></div></div>
+          </div>
+
+          <!-- <div class="model-divider">c9qa804</div> -->
+          <div class="six-col-grid example-row">
+            <div class="comparison-card"><img src="./visuals/c9qa804_0_1536x1024_s_5__input_annotated.jpg" alt="input"></div>
+            <div class="comparison-card"><img src="./visuals/c9qa804_0_1536x1024_s_5__pred_RdBu_r.jpg" alt="no distr"><div class="card-pills"><span class="score-badge good">F1*: 0.703</span></div></div>
+            <div class="comparison-card"><img src="./visuals/c9qa804_0_1536x1024_s_5__pred_distracted_RdBu_r.jpg" alt="distracted"><div class="card-pills"><span class="score-badge bad">F1*: 0.009</span></div></div>
+            <div class="comparison-card has-mask"><img class="main-img" src="./visuals/c9qa804_0_1536x1024_s_5__pred_cover_generated_RdBu_r.jpg" data-mask="./visuals/c9qa804_0_1536x1024_s_5__cover_generated.jpg" alt="manual pred"><div class="card-pills"><span class="score-badge good">F1*: 0.697</span><span class="mask-pill">Mask</span></div></div>
+            <div class="comparison-card has-mask"><img class="main-img" src="./visuals/c9qa804_0_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg" data-mask="./visuals/c9qa804_0_1536x1024_s_5__cover_iterative_dilation_5.0_round_1.jpg" alt="auto pred"><div class="card-pills"><span class="score-badge good">F1*: 0.616</span><span class="mask-pill">Mask</span></div></div>
+            <div class="comparison-card"><img src="./visuals/non_distracted_c9qa804_0_1536x1024_s_5__pred_iterative_dilation_5.0_merged_round_1_RdBu_r.jpg" alt="auto pred no distr"><div class="card-pills"><span class="score-badge good">F1*: 0.680</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h3 class="title is-4">Scatter plots</h3>
+        <p class="section-note">
+          The scatter plots compare the impact of distractions on the original TruFor model and our adapted version. Each point represents one image. The y-axis shows the <span class="f1star-trigger">F1* score<span class="f1star-popup"><strong>F1* score</strong> excludes distraction pixels from the evaluation. Only pixels where the distraction mask M&nbsp;=&nbsp;0 are considered. This way models are neither rewarded nor penalized for detecting the distraction itself.<br><br><code>F1* = 2·TP / (2·TP + FP + FN)</code><br><em>(computed only over non-distraction pixels)</em></span></span> without distractions, while the x-axis shows the <span class="f1star-trigger">F1* score<span class="f1star-popup"><strong>F1* score</strong> excludes distraction pixels from the evaluation. Only pixels where the distraction mask M&nbsp;=&nbsp;0 are considered. This way models are neither rewarded nor penalized for detecting the distraction itself.<br><br><code>F1* = 2·TP / (2·TP + FP + FN)</code><br><em>(computed only over non-distraction pixels)</em></span></span> after a distraction is added. Points on the diagonal are unaffected by the distraction, whereas points to the left indicate degraded performance. Our approach shifts these points back toward the diagonal, demonstrating improved robustness.
+        </p>
+        <div class="columns is-variable is-6" style="margin-top:1rem;">
+          <div class="column">
+            <div class="method-card scatter-card">
+              <div>Unmodified TruFor</div>
+              <img src="./visuals/scatter_plot_DSO-1_VIPP_OpenForensics_IMD2020_random_distractions_QF_(85-95)_small_large_TruFor__WACV_square.png" alt="Scatter plot unmodified TruFor" style="width:100%;">
+            </div>
+          </div>
+          <div class="column">
+            <div class="method-card scatter-card">
+              <div>TruFor with Masked Convolutions (ours)</div>
+              <img src="./visuals/scatter_plot_DSO-1_VIPP_OpenForensics_IMD2020_random_distractions_QF_(85-95)_small_large_TruFor_maskedcnnManual_Automatic__WACV-dilated-5_square.png" alt="Scatter plot masked convolutions" style="width:100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="citation">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 section-title has-text-centered">Citation</h2>
+          <pre class="bibtex-block"><code>@InProceedings{Staelens_2026_WACVW,
+    author    = {Staelens, Xander and Lambert, Peter and Van Wallendael, Glenn and Mareen, Hannes},
+    title     = {Ignoring the Decoy: Exposing and Tackling Forensic Distractions in Image Forgery Localization using Masked Convolutions},
+    booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) Workshops},
+    year      = {2026},
+    pages     = {924--932}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt-section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-4 has-text-centered">Acknowledgments</h2>
+          <p class="has-text-centered acknowledgments">This work was funded in part by IDLab (Ghent University – imec), by Flanders Innovation &amp; Entrepreneurship (VLAIO), by Research Foundation – Flanders (FWO) (1SA9O26N &amp; G0A2523N), and by the European Union.
+          This work builds on <a href="https://github.com/grip-unina/TruFor" target="_blank" rel="noopener">TruFor (GRIP-UNINA)</a> and <a href="https://github.com/mjkwon2021/CAT-Net" target="_blank" rel="noopener">CAT-Net (Myung-Joon Kwon)</a>.</br>
+          This project page was adapted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer footer-small">
+    <div class="content has-text-centered">
+      <p>Project page for <strong>Ignoring the Decoy</strong> · IDLab, Ghent University – imec</p>
+    </div>
+  </footer>
+
+  <script src="./static/js/index.js"></script>
+</body>
+</html>

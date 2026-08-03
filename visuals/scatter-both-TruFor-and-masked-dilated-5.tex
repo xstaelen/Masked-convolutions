@@ -1,0 +1,25 @@
+\begin{figure}[tb]
+    \newcommand{\subfigwidth}{0.49\linewidth} % Define a variable for the width
+    \centering
+
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/scatterplots/light-blue/scatter_plot_DSO-1_VIPP_OpenForensics_IMD2020_random_distractions_QF_(85-95)_small_large_TruFor__WACV_square.pdf}
+        \caption{Unmodified TruFor}
+        \label{figure:motivation:TruFor-scatter}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{\subfigwidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters_WACV/figures/scatterplots/light-blue/scatter_plot_DSO-1_VIPP_OpenForensics_IMD2020_random_distractions_QF_(85-95)_small_large_TruFor_maskedcnnManual_Automatic__WACV-dilated-5_square.pdf}
+        \caption{Masked Convolution (ours)}
+        \label{figure:evaluation:TruFor-scatter}
+    \end{subfigure}
+
+    \caption{
+    Scatter plots of the F1* scores~\eqref{eq:F1*-score} of unmodified TruFor~\cite{TruFor} (a) vs. TruFor with the proposed masked-convolution approach (b), both with manual and automatic masking.
+    Points farther to the left of the diagonal indicate stronger performance degradation due to forensic distractions.
+    While the unmodified TruFor shows many points to the left, the adapted TruFor (both manual and automatic) shows a clear shift toward the diagonal, reflecting improved resilience to distractions. Notably, the points for manual masking (orange) cluster closely around the diagonal, indicating very high resilience to distractions.}
+    \label{figure:motivation+evaluation:TruFor-scatter}
+\end{figure}
+
