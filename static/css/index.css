@@ -25,12 +25,16 @@
 
 html {
   scroll-behavior: smooth;
+  /* anchor jumps land below the (possibly multi-line) fixed navbar */
+  scroll-padding-top: var(--nav-h, 3.25rem);
 }
 
 body {
   font-family: 'Noto Sans', sans-serif;
   color: var(--text);
   background: #fff;
+  /* hidden F1* popups near the screen edge must not widen the page; clip (unlike hidden) keeps sticky working */
+  overflow-x: clip;
 }
 
 body,
@@ -59,22 +63,139 @@ h3,
   backdrop-filter: blur(8px);
 }
 
+/* one flexible row: brand left, links right; when space runs out the whole link group
+   moves to its own line first (flex-basis: max-content), and only then wraps further */
+.top-nav > .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-nav .navbar-brand {
+  flex: none;
+}
+
+.top-nav .navbar-menu {
+  display: flex;
+  flex: 0 1 max-content;
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.top-nav .navbar-end {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
 .top-nav .navbar-item {
+  display: flex;
+  align-items: center;
   color: var(--text);
   font-weight: 500;
+}
+
+/* set by JS when the links no longer fit next to the brand */
+.top-nav.is-wrapped > .container,
+.top-nav.is-wrapped .navbar-end {
+  justify-content: center;
+}
+
+.top-nav.is-wrapped .navbar-menu {
+  flex-basis: 100%;
+  justify-content: center;
+}
+
+.top-nav.is-wrapped .navbar-brand .navbar-item {
+  padding-bottom: 0;
+}
+
+.top-nav.is-wrapped .navbar-end {
+  margin-left: 0;
 }
 
 .top-nav .navbar-item:hover,
 .top-nav .navbar-item:focus {
   color: var(--primary);
+  background: transparent;
 }
 
 .nav-brand {
   font-weight: 700;
 }
 
+/* Results dropdown: only on wide screens with a real mouse; elsewhere "Results" is a plain link */
+.nav-dropdown {
+  position: relative;
+  display: flex;
+}
+
+.nav-caret,
+.nav-dropdown-menu {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  .nav-caret {
+    display: inline-block;
+    margin-left: 0.35rem;
+    font-size: 0.65rem;
+    transition: transform 0.15s;
+  }
+
+  .nav-dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    min-width: 13rem;
+    padding: 0.4rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(25, 45, 95, 0.14);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -6px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+  }
+
+  .nav-dropdown-menu a {
+    display: block;
+    padding: 0.45rem 0.8rem;
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Google Sans', 'Noto Sans', sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .nav-dropdown-menu a:hover,
+  .nav-dropdown-menu a:focus-visible {
+    color: var(--primary);
+    background: var(--bg-soft);
+    outline: none;
+  }
+
+  .nav-dropdown:not(.is-closed):hover .nav-dropdown-menu,
+  .nav-dropdown:not(.is-closed):focus-within .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+  }
+
+  .nav-dropdown:not(.is-closed):hover .nav-caret,
+  .nav-dropdown:not(.is-closed):focus-within .nav-caret {
+    transform: rotate(180deg);
+  }
+}
+
 .paper-hero {
-  padding-top: 4.5rem;
+  padding-top: calc(var(--nav-h, 3.25rem) + 1.25rem);
   background: linear-gradient(180deg, #f9fbff 0%, #fff 100%);
 }
 
@@ -112,6 +233,16 @@ h3,
 
 .publication-authors a:hover {
   color: var(--primary);
+}
+
+/* use the page's distraction blue instead of Bulma's default turquoise */
+.button.is-primary {
+  background-color: var(--distraction);
+}
+
+.button.is-primary:hover,
+.button.is-primary:focus {
+  background-color: #006bbd;
 }
 
 .publication-links {
@@ -341,6 +472,79 @@ h3,
   align-items: center;
 }
 
+/* sticky grid header + model label: stay below the navbar while scrolling through a grid */
+.comparison-group {
+  /* extra width the sticky bars extend past the grid, so card edges and shadows stay hidden */
+  --bar-bleed: 1.5rem;
+}
+
+.alt-section {
+  --sticky-bg: var(--bg-alt);
+}
+
+.sticky-head {
+  position: sticky;
+  top: var(--nav-h, 3.25rem);
+  z-index: 6;
+  margin: 0 calc(-1 * var(--bar-bleed));
+  padding: 0.6rem var(--bar-bleed) 0.1rem;
+  background: var(--sticky-bg, #fff);
+}
+
+.sticky-head .grid-header {
+  margin-bottom: 0.75rem;
+}
+
+/* masking-approach switch: only shown on small screens (see the 768px media query) */
+.mode-toggle {
+  display: none;
+  justify-content: center;
+  margin: 0 0 0.6rem;
+}
+
+.mode-btn {
+  padding: 0.35rem 0.7rem;
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: #fff;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.mode-btn + .mode-btn {
+  border-left: none;
+}
+
+.mode-btn:first-child { border-radius: 999px 0 0 999px; }
+.mode-btn:last-child { border-radius: 0 999px 999px 0; }
+
+.mode-btn.is-active {
+  color: #fff;
+  background: var(--masked-convolution);
+  border-color: var(--masked-convolution);
+}
+
+/* the model label sticks below the header, but only while its own group is in view */
+.model-group-head {
+  position: sticky;
+  top: calc(var(--nav-h, 3.25rem) + var(--head-h, 4rem));
+  z-index: 5;
+  margin: 0 calc(-1 * var(--bar-bleed));
+  padding: 0.1rem var(--bar-bleed) 0.75rem;
+  background: var(--sticky-bg, #fff);
+}
+
+.model-group-head .model-divider {
+  margin: 0;
+}
+
+.model-group + .model-group {
+  margin-top: 0.4rem;
+}
+
 .example-row {
   margin-bottom: 1rem;
 }
@@ -484,6 +688,65 @@ h3,
   background: var(--light-pill);
 }
 
+/* compact results table: sized to its content and centered, instead of stretched */
+.results-table {
+  width: auto;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.results-table th,
+.results-table td {
+  padding: 0.38rem 0.55rem;
+  vertical-align: middle;
+}
+
+.results-table thead th {
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+}
+
+.results-table thead tr:last-child th {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* faint vertical line between the dataset groups (Orig | Distr. | Δ) */
+.results-table thead tr:first-child th + th,
+.results-table thead tr:last-child th:nth-child(3n+1),
+.results-table tbody td:nth-child(3n+2) {
+  border-left: 1px solid #e3e9f3 !important;
+}
+
+/* keep each distracted value visually paired with its change */
+.results-table tbody td:nth-child(3n) {
+  padding-right: 0.15rem;
+}
+
+.results-table .delta-cell,
+.results-table .delta-head {
+  padding-left: 0.15rem;
+}
+
+.results-table .delta-head {
+  font-weight: 700 !important;
+}
+
+/* separate the baselines from our modified models */
+.results-table tr:not(.highlight-row-masked) + tr.highlight-row-masked > * {
+  border-top: 2px solid var(--border) !important;
+}
+
+.results-table .delta {
+  margin-left: 0;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.72rem;
+}
+
 .table-footnote,
 .section-note {
   margin-top: 0.9rem;
@@ -513,6 +776,214 @@ h3,
 
 .visual-table .score-badge {
   margin-top: 0.55rem;
+}
+
+/* ---------- Main results: original -> distracted -> ignored ---------- */
+.main-results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.main-result-card {
+  padding: 1.2rem 1.3rem 1rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(25, 45, 95, 0.07);
+}
+
+.main-result-model {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 107, 53, 0.12);
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.main-result-model a {
+  color: var(--secondary);
+}
+
+.main-result-model a:hover {
+  opacity: 0.75;
+}
+
+.result-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.flow-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.flow-label .ours {
+  font-weight: 400;
+}
+
+.flow-value {
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.flow-step.distracted .flow-label,
+.flow-step.distracted .flow-value {
+  color: var(--distraction);
+}
+
+.flow-step.ignored .flow-label,
+.flow-step.ignored .flow-value {
+  color: var(--masked-convolution);
+}
+
+/* bar length = F1* relative to the original */
+.flow-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--light-pill);
+  overflow: hidden;
+}
+
+.flow-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.flow-step.distracted .flow-bar > span { background: var(--distraction); }
+.flow-step.ignored .flow-bar > span { background: var(--masked-convolution); }
+
+.flow-note {
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.flow-arrow {
+  padding-top: 1.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.delta-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.delta-pill.good { color: var(--good); background: var(--good-bg); }
+.delta-pill.medium { color: var(--medium); background: var(--medium-bg); }
+.delta-pill.bad { color: var(--bad); background: var(--bad-bg); }
+
+.flow-auto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.flow-auto b {
+  color: var(--text);
+}
+
+.main-results-note {
+  max-width: 880px;
+  margin: 0.9rem auto 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* ---------- Takeaways ---------- */
+.takeaways {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.4rem 1.8rem;
+  background: var(--masked-convolution-light);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  /* "Citation" in the navbar lands here, so takeaways and citation are both in view */
+  scroll-margin-top: 1.5rem;
+}
+
+.takeaways h3 {
+  margin-bottom: 0.8rem !important;
+}
+
+.takeaways ul {
+  list-style: disc;
+  margin-left: 1.2rem;
+}
+
+.takeaways li {
+  margin-bottom: 0.3rem;
+}
+
+/* targets of the Results dropdown in the navbar */
+#quantitative,
+#visual-comparison,
+#scatter-plots {
+  scroll-margin-top: 1.25rem;
+}
+
+/* ---------- Citation copy button ---------- */
+.bibtex-wrap {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 1;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #eff4ff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.copy-btn.copied {
+  color: #7fe0a8;
+  border-color: #7fe0a8;
 }
 
 .bibtex-block {
@@ -609,28 +1080,124 @@ h3,
 }
 
 @media screen and (max-width: 1023px) {
-  .top-nav .navbar-menu {
-    display: block;
-  }
-
-  .top-nav .navbar-end {
-    justify-content: center;
-    flex-wrap: wrap;
+  .top-nav > .container {
+    padding: 0 0.5rem;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .paper-hero {
-    padding-top: 5.2rem;
-  }
-
   .publication-title {
     font-size: 2rem !important;
   }
 
-  .hero-figure-grid,
-  .three-col-grid {
+  /* keep the subtitle smaller than "Ignoring the Decoy:" */
+  .title-smaller {
+    font-size: 1.3rem;
+  }
+
+  .hero-figure-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .hero-panel {
+    padding: 0.45rem;
+  }
+
+  .hero-panel figcaption {
+    margin-top: 0.4rem;
+    font-size: 0.78rem;
+  }
+
+  /* comparison grids keep all their columns; cards, labels and pills just get smaller */
+  .three-col-grid,
+  .six-col-grid {
+    gap: 0.35rem;
+  }
+
+  .example-row {
+    margin-bottom: 0.35rem;
+  }
+
+  .comparison-card {
+    padding: 0.25rem;
+    border-radius: 10px;
+  }
+
+  .comparison-card img {
+    border-radius: 7px;
+  }
+
+  .grid-header > div {
+    padding: 0.4rem 0.2rem;
+    font-size: 0.66rem;
+    line-height: 1.25;
+    border-radius: 10px;
+  }
+
+  .card-pills {
+    gap: 0.2rem;
+    margin-top: 0.3rem;
+  }
+
+  .score-badge,
+  .mask-pill {
+    padding: 0.15rem 0.35rem;
+    font-size: 0.6rem;
+  }
+
+  .model-divider {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .comparison-group {
+    --bar-bleed: 0.5rem;
+  }
+
+  /* the 3-column grid uses part of the section padding to get a bit more width */
+  .comparison-group:not(.figure-breakout) {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+  }
+
+  .figure-breakout {
+    width: calc(100vw - 1rem);
+  }
+
+  /* visual comparison: 4 columns, the last one switches between the three masking approaches */
+  .visual-results .six-col-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .visual-results[data-mode="manual"] .six-col-grid > :nth-child(5),
+  .visual-results[data-mode="manual"] .six-col-grid > :nth-child(6),
+  .visual-results[data-mode="auto"] .six-col-grid > :nth-child(4),
+  .visual-results[data-mode="auto"] .six-col-grid > :nth-child(6),
+  .visual-results[data-mode="auto-clean"] .six-col-grid > :nth-child(4),
+  .visual-results[data-mode="auto-clean"] .six-col-grid > :nth-child(5) {
+    display: none;
+  }
+
+  .mode-toggle {
+    display: flex;
+  }
+
+  .main-results {
     grid-template-columns: 1fr;
+  }
+
+  .flow-label {
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .flow-value {
+    font-size: 1.5rem;
+  }
+
+  .flow-arrow {
+    padding-top: 1.5rem;
   }
 
   .pdf-embed,
