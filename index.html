@@ -29,7 +29,10 @@
       <div class="navbar-brand">
         <a class="navbar-item nav-brand" href="#top">Ignoring the Decoy</a>
       </div>
-      <div class="navbar-menu is-active">
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <i class="fas fa-bars" aria-hidden="true"></i><i class="fas fa-xmark" aria-hidden="true"></i>
+      </button>
+      <div class="navbar-menu is-active" id="nav-links">
         <div class="navbar-end">
           <a class="navbar-item" href="#abstract">Abstract</a>
           <a class="navbar-item" href="#problem">Problem</a>
@@ -110,7 +113,14 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3 section-title">Abstract</h2>
+          <h2 class="title is-3 section-title">TL;DR</h2>
+          <div class="tldr-box">
+            <p>
+              Benign overlays such as logos and watermarks can act as <b class="distraction">forensic distractions</b> that derail <b class="forgery-localization">image forgery localization</b> models: TruFor loses over half of its performance. We propose <b class="masked-convolution">masked convolutions</b>, which let CNN-based models ignore masked regions without any retraining. With manual masks, the performance drop shrinks to just 4.15%.
+            </p>
+          </div>
+          <details class="abstract-fold">
+          <summary><span>Full abstract</span><i class="fas fa-chevron-down" aria-hidden="true"></i></summary>
           <div class="content has-text-justified abstract-box">
             <p>
               Manipulating images has become increasingly easier due to advanced editing tools, leading to a surge in forged images being shared online, raising the need for robust multimedia forensics. Particularly, <b class="forgery-localization">image forgery localization (IFL)</b> methods aim to detect and localize image tampering.</br></br>
@@ -122,6 +132,7 @@
               Experiments show that our proposed approaches significantly improve robustness against distractions, reducing performance degradation to just <b>4.15%</b> for CAT-Net and <b>2.94%</b> for TruFor. This demonstrates our method's potential as a distraction-aware technique to enhance the real-world applicability of IFL models.
             </p>
           </div>
+          </details>
         </div>
       </div>
     </div>

@@ -21,6 +21,7 @@
   --forgery-localization: #E96C00;
   --masked-convolution: #B30BA3;
   --masked-convolution-light: #eef4ff;
+  --panel: #e8f3fd;
 }
 
 html {
@@ -116,6 +117,66 @@ h3,
 
 .top-nav.is-wrapped .navbar-end {
   margin-left: 0;
+}
+
+/* hamburger: set by JS (is-collapsible) when the links would need their own row(s);
+   the links then only show while the menu is open (is-open) */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  color: var(--primary);
+  background: var(--bg-soft);
+  outline: none;
+}
+
+.nav-toggle .fa-xmark,
+.top-nav.is-open .nav-toggle .fa-bars {
+  display: none;
+}
+
+.top-nav.is-open .nav-toggle .fa-xmark {
+  display: inline-block;
+}
+
+.top-nav.is-collapsible > .container {
+  justify-content: space-between;
+}
+
+.top-nav.is-collapsible .nav-toggle {
+  display: flex;
+}
+
+.top-nav.is-collapsible .navbar-brand .navbar-item {
+  padding-bottom: 0.5rem;
+}
+
+.top-nav.is-collapsible:not(.is-open) .navbar-menu {
+  display: none;
+}
+
+.top-nav.is-collapsible.is-open .navbar-menu {
+  padding-bottom: 0.4rem;
+  animation: nav-drop 0.18s ease-out;
+}
+
+@keyframes nav-drop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
 }
 
 .top-nav .navbar-item:hover,
@@ -345,6 +406,61 @@ h3,
   background: var(--bg-soft);
   border: 1px solid var(--border);
   border-radius: 20px;
+}
+
+/* short summary shown instead of the full abstract */
+.tldr-box {
+  padding: 1.4rem 1.75rem;
+  background: var(--panel);
+  border-radius: 20px;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  text-align: center;
+}
+
+/* full abstract, folded away by default */
+.abstract-fold {
+  margin-top: 1rem;
+}
+
+.abstract-fold > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-weight: 500;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.abstract-fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+.abstract-fold > summary:hover,
+.abstract-fold > summary:focus-visible {
+  color: var(--primary-dark);
+  border-color: var(--primary);
+  outline: none;
+}
+
+.abstract-fold > summary i {
+  font-size: 0.75rem;
+  transition: transform 0.2s;
+}
+
+.abstract-fold[open] > summary i {
+  transform: rotate(180deg);
+}
+
+.abstract-fold[open] > .abstract-box {
+  margin-top: 1rem;
 }
 
 .alt-section {
@@ -1088,6 +1204,17 @@ h3,
 @media screen and (max-width: 768px) {
   .publication-title {
     font-size: 2rem !important;
+  }
+
+  .tldr-box {
+    padding: 1.1rem 1.2rem;
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .abstract-box {
+    padding: 1.2rem;
+    text-align: left !important;
   }
 
   /* keep the subtitle smaller than "Ignoring the Decoy:" */

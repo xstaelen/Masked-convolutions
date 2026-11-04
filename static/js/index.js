@@ -36,17 +36,31 @@ document.querySelectorAll('.visual-results').forEach(group => {
 
 // Navbar layout + sticky offsets: the grid header sits below the navbar, the model label below the grid header
 const nav = document.querySelector('.top-nav');
+const navToggle = document.querySelector('.nav-toggle');
+function setNavOpen(open) {
+  if (!nav) return;
+  nav.classList.toggle('is-open', open);
+  if (navToggle) navToggle.setAttribute('aria-expanded', String(open));
+}
 function updateNavLayout() {
   if (!nav) return;
   // center brand and links once the links no longer fit next to the brand
   const brand = nav.querySelector('.navbar-brand');
   const menu  = nav.querySelector('.navbar-menu');
-  nav.classList.remove('is-wrapped');
-  if (brand && menu && menu.offsetTop >= brand.offsetTop + brand.offsetHeight - 1) nav.classList.add('is-wrapped');
+  nav.classList.remove('is-wrapped', 'is-collapsible');
+  if (brand && menu && menu.offsetTop >= brand.offsetTop + brand.offsetHeight - 1) {
+    // links would need their own row(s): fold them behind the hamburger instead
+    nav.classList.add('is-wrapped', 'is-collapsible');
+  } else {
+    setNavOpen(false);
+  }
 }
 function updateStickyOffsets() {
   updateNavLayout();
-  if (nav) document.documentElement.style.setProperty('--nav-h', `${nav.offsetHeight}px`);
+  // offsets follow the closed navbar, so opening the menu doesn't shift the page
+  if (nav && !nav.classList.contains('is-open')) {
+    document.documentElement.style.setProperty('--nav-h', `${nav.offsetHeight}px`);
+  }
   document.querySelectorAll('.comparison-group').forEach(group => {
     const head = group.querySelector('.sticky-head');
     if (head) group.style.setProperty('--head-h', `${head.offsetHeight}px`);
@@ -55,6 +69,23 @@ function updateStickyOffsets() {
 updateStickyOffsets();
 window.addEventListener('resize', updateStickyOffsets);
 window.addEventListener('load', updateStickyOffsets);
+
+// Hamburger: open/close the links; any choice, an outside tap or Escape closes them again
+if (nav && navToggle) {
+  navToggle.addEventListener('click', () => setNavOpen(!nav.classList.contains('is-open')));
+  nav.querySelectorAll('.navbar-menu a').forEach(link => {
+    link.addEventListener('click', () => setNavOpen(false));
+  });
+  document.addEventListener('click', e => {
+    if (nav.classList.contains('is-open') && !nav.contains(e.target)) setNavOpen(false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+      setNavOpen(false);
+      navToggle.focus();
+    }
+  });
+}
 
 // Results dropdown: close after a choice, even while the mouse still hovers it
 document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
